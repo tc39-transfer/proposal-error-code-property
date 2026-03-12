@@ -64,7 +64,7 @@ This becomes challenging for a few reasons:
    It would be a significant lift for implementions to retroactively update error
    handling logic to add and propagate error codes through the existing logic. The
    benefit of doing so is likely marginal enough that it wouldn't be worth it.
-2. Many implementation level optimizations means it's not often clear exactly which
+2. Many implementation-level optimizations mean it's not often clear exactly which
    code would apply in any given situation. The throw might originate in a utility
    function used by multiple paths, for instance, or a single "observable" throw
    defined by the spec might actually originate from multiple places in the code
