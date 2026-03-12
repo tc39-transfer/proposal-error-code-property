@@ -51,6 +51,33 @@ A standardized `code` property would enable:
    codes. A developer can search for `ERR_INVALID_ARG_TYPE` and find definitive
    documentation, whereas searching for a message string is unreliable.
 
+## Out of scope
+
+When presenting this to TC-39 for Stage 1, the question was raised about whether
+the committee should carve out a part of the `code` namespace for TC-39 defined
+error codes; and whether the committee should be defining it's own `code` values
+for spec-defined throws.
+
+This becomes challenging for a few reasons:
+
+1. It's difficult to retrofit. The spec defines a large number of throw conditions.
+   It would be a significant lift for implementions to retroactively update error
+   handling logic to add and propagate error codes through the existing logic. The
+   benefit of doing so is likely marginal enough that it wouldn't be worth it.
+2. Many implementation level optimizations means it's not often clear exactly which
+   code would apply in any given situation. The throw might originate in a utility
+   function used by multiple paths, for instance, or a single "observable" throw
+   defined by the spec might actually originate from multiple places in the code
+   or even shift around over time making it more difficult to manage.
+3. What the `code` namespace would be is difficult to determine. While the ecosystem
+   has adopted the use of codes they have not settled on a common naming or
+   namespacing convention and anything we may try to impose will either conflict with
+   or unreasonably constrain the ecosystem.
+
+For the purposes of this proposal. We consider both the definition of spec-defined
+`codes` and whether to assign them to spec-defined errors to be out of scope; and
+something that is better addressed in a separate follow-on proposal, if at all.
+
 ## Prior Art Survey
 
 The JavaScript ecosystem has overwhelmingly and independently adopted `error.code`
